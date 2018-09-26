@@ -24,6 +24,7 @@ describe('Artist POST Endpoint', () => {
             genre: 'Ambient',
           },
         });
+
         const response = httpMocks.createResponse({
           eventEmitter: events.EventEmitter,
         });
@@ -31,7 +32,7 @@ describe('Artist POST Endpoint', () => {
         post(request, response);
     
         response.on('end', () => {
-          let artistCreated = JSON.parse(response._getData()); //eslint-disable-line
+          let artistCreated = JSON.parse(response._getData()); 
           expect(artistCreated.name).toBe('Gold Panda');
           expect(artistCreated.genre).toBe('Ambient');
           done();
@@ -53,5 +54,4 @@ describe('Artist POST Endpoint', () => {
         });
       });    
     
-})
- 
+});
