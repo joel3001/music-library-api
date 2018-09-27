@@ -57,7 +57,6 @@ describe('GET Artist endpoint', () => {
             mongoose.disconnect().then(() => {
                 setTimeout(done, 500)
             });
-        });        
-        
+        });           
     });
 });
