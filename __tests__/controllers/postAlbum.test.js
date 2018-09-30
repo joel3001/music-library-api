@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 const httpMocks = require('node-mocks-http');
 const events = require('events');
-const { postAlbum } = require('../../controllers/Artist');
+const { postAlbum } = require('../../controllers/Album');
 const Artist = require('../../models/Artist');
-const Album = require('../../models/Album')
+const Album = require('../../models/Album');
 
 require('dotenv').config({
   path: path.join(__dirname, '../../settings.env'),
