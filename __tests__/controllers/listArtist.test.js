@@ -43,8 +43,8 @@ require('dotenv').config({
   
         response.on('end', () => {
             const listOfArtists = JSON.parse(response._getData());
-            const artistNames = listOfArtists.map(e => e.name);
-            expect(artistNames).toEqual(expect.arrayContaining(['Foals', 'The Strokes', 'Nightmares on Wax']));
+            expect(listOfArtists.map(e => e.name)).toEqual(
+                expect.arrayContaining(['Foals', 'The Strokes', 'Nightmares on Wax']));
             expect(listOfArtists).toHaveLength(3);
             done();
     

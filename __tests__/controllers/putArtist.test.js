@@ -15,7 +15,7 @@ describe('PUT Artist endpoint', () => {
   });
 
   it('Should update an artist record when PUT endpoint is called', done => {
-    const artist = new Artist({ name:'Coldplay', genre:'Sad' });
+    const artist = new Artist({ name: 'Coldplay', genre: 'Sad' });
     artist.save((err, artistCreated) => {
         if (err) {
             console.log(err, 'stuff went wrong');
@@ -29,7 +29,13 @@ describe('PUT Artist endpoint', () => {
             },
             body: {
                 name: 'Coldplay',
-                genre: 'Rock'
+                genre: 'Rock',
+                albums: [
+                    {
+                        name: 'A Head Full Of Dreams',
+                        year: 2015
+                    }
+                ]
             }
         });
 
@@ -40,16 +46,22 @@ describe('PUT Artist endpoint', () => {
         put(request, response);
 
         response.on('end', () => {
-            const updatedArtist = JSON.parse(response._getData()); //eslint-disable-line
+            const updatedArtist = JSON.parse(response._getData()); 
             expect(updatedArtist).toEqual({
                 __v: 0,
                 _id: artistCreated._id.toString(), 
                 name: 'Coldplay',
                 genre: 'Rock',
+                albums: [
+                    {
+                    name: 'A Head Full Of Dreams',
+                    year: 2015
+                    }
+                ]
             });
             done();
         });
-    });
+     });
   });
 
   afterEach((done) => {
