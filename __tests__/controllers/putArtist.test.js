@@ -29,13 +29,7 @@ describe('PUT Artist endpoint', () => {
             },
             body: {
                 name: 'Coldplay',
-                genre: 'Rock',
-                albums: [
-                    {
-                        name: 'A Head Full Of Dreams',
-                        year: 2015
-                    }
-                ]
+                genre: 'Rock'
             }
         });
 
@@ -52,12 +46,6 @@ describe('PUT Artist endpoint', () => {
                 _id: artistCreated._id.toString(), 
                 name: 'Coldplay',
                 genre: 'Rock',
-                albums: [
-                    {
-                    name: 'A Head Full Of Dreams',
-                    year: 2015
-                    }
-                ]
             });
             done();
         });

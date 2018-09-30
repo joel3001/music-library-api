@@ -33,7 +33,6 @@ exports.put = (req, res) => {
     
         artist.set({ name: req.body.name });
         artist.set({ genre: req.body.genre });
-        artist.set({ albums: [req.body.albums.name, req.body.albums.year] });
     
         artist.save((updateErr, artistUpdated) => {
           if (updateErr) {
@@ -51,24 +50,6 @@ exports.deleteArtist = (req, res) => {
         res.json('something went wrong');
       }
       res.json('Artist deleted');
-    });
-  };
-
-  exports.postAlbum = (req, res) => {
-    Artist.findById(req.params.artistId, (err, artist) => {
-      if (err) {
-        res.json('Something went wrong');
-      }
-  
-      artist.set({ albums: artist.albums.concat([req.body]) });
-  
-      artist.save((updateErr, artistUpdated) => {
-        if (updateErr) {
-          res.json('Could not update');
-        }
-  
-        res.json(artistUpdated);
-      });
     });
   };
   

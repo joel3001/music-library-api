@@ -4,6 +4,7 @@ const httpMocks = require('node-mocks-http');
 const events = require('events');
 const { postAlbum } = require('../../controllers/Artist');
 const Artist = require('../../models/Artist');
+const Album = require('../../models/Album')
 
 require('dotenv').config({
   path: path.join(__dirname, '../../settings.env'),
@@ -40,23 +41,24 @@ describe('POST Album endpoint', () => {
           postAlbum(request, response);
 
           response.on('end', () => {
-            Artist.findById(artistCreated._id, (err, foundArtist) => {
-                console.log(foundArtist)
-                expect(foundArtist.albums.length).toEqual(1);
-              
-                done();              
-          });   
+            const albumCreated = JSON.parse(response._getData());
+            expect(albumCreated.name).toEqual('Salad Days');
+            expect(albumCreated.year).toEqual(2012);
+            expect(albumCreated.artist._id).toEqual(artistCreated._id.toString());
+            done();             
         })
     });
 });
 
     afterEach((done) => {
-        Artist.collection.drop((e) => {
-        if (e) {
-            console.log(e);
-        }
-        done();
-        });
+        Artist.collection.drop((artistDropErr) => {
+            Album.collection.drop((albumDropErr) => {
+              if (artistDropErr || albumDropErr) {
+                console.log('Can not drop test collections');
+              }
+              done();
+            });
+          });          
     });
   
     afterAll(() => {
