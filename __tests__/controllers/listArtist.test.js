@@ -19,7 +19,7 @@ require('dotenv').config({
     });
   
     it('should retrieve a list of Artists from the database', done => {
-      let artists = [
+      const artists = [
         { name: 'Foals', genre: 'Indie' },
         { name: 'The Strokes', genre: 'Rock' },
         { name: 'Nightmares on Wax', genre: 'House' },  
