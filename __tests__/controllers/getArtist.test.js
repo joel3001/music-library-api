@@ -14,7 +14,7 @@ describe('GET Artist endpoint', () => {
         mongoose.connect(process.env.TEST_DATABASE_CONN, done);
     });
 
-    it ('should retrieve Artist record from database', (done) => {
+    it ('should retrieve Artist record from database', done => {
         const artist = new Artist({ name: 'Wu-Tang Clan', genre: 'HipHop' });
         artist.save((err, artistCreated) => {
             if(err) {

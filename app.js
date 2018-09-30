@@ -16,5 +16,6 @@ app.post('/Artist', Artist.post);
 app.get('/Artist', Artist.list);
 app.get('/Artist/:artistId', Artist.get);
 app.put('/Artist/:artistId', Artist.put);
+app.delete('/Artist/:artistId', Artist.deleteArtist);
 
 app.listen(3000, () => console.log('It works!'));

@@ -41,6 +41,15 @@ exports.put = (req, res) => {
     
           res.json(artistUpdated);
         });
-      });
-    };
+    });
+};
+
+exports.deleteArtist = (req, res) => {
+    Artist.findByIdAndRemove(req.params.artistId, err => {
+      if (err) {
+        res.json('something went wrong');
+      }
+      res.json('Artist deleted');
+    });
+  };
      

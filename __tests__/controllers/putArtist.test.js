@@ -14,7 +14,7 @@ describe('PUT Artist endpoint', () => {
     mongoose.connect(process.env.TEST_DATABASE_CONN, done);
   });
 
-  it('Should update an artist record when PUT endpoint is called', (done) => {
+  it('Should update an artist record when PUT endpoint is called', done => {
     const artist = new Artist({ name:'Coldplay', genre:'Sad' });
     artist.save((err, artistCreated) => {
         if (err) {
